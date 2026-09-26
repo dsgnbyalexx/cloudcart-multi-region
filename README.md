@@ -31,3 +31,20 @@ Node.js / Express API
   │
   ▼
 PostgreSQL
+                         Route 53
+                            │
+                 Health-check based routing
+                            │
+              ┌─────────────┴─────────────┐
+              │                           │
+              ▼                           ▼
+       Primary Region               DR Region
+        us-east-1                   us-west-2
+              │                           │
+        Application ALB             Standby ALB
+              │                           │
+        EC2 Auto Scaling           EC2 Auto Scaling
+              │                           │
+          RDS PostgreSQL          DR PostgreSQL
+              │                           │
+              └────── Replication ───────┘
